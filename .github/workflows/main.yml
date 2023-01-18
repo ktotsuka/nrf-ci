@@ -1,0 +1,10 @@
+on: [push]
+
+jobs:
+  my_build_job:
+    runs-on: ubuntu-latest
+    name: A job to build Nordic 52840 code
+    steps:
+      - name: Build action step
+        id: build
+        uses: ktotsuka/nrf-ci@HEAD
