@@ -1,19 +1,17 @@
-name: Kenji's workflow
+name: Kenji's workflow to run commands inside a docker container
 on: [push]
 
 jobs:
   my_build_job:  
     runs-on: ubuntu-latest
-    name: A job to build Nordic 52840 code
-    # container:
-    #   image: ktotsuka/getting-started
-    #   credentials:
-    #     username: ${{ secrets.DOCKER_HUB_USERNAME }}
-    #     password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+    container:
+      image: ktotsuka/getting-started
+      credentials:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
     steps:
-      - name: Build action step
+      - name: Commands
         run: |
-          uname -a
           whoami
           pwd
-          cat /proc/1/cgroup
+          hostname
