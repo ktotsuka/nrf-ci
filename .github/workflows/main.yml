@@ -15,3 +15,7 @@ jobs:
           whoami
           pwd
           hostname
+          ls -al
+          ls -al ../
+          ls -al ../../
+          ls -al /workdir
