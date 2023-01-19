@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to build Nordic 52840 code
     container:
-      image: ktotsuka:getting-started
+      image: ktotsuka/getting-started
       credentials:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
