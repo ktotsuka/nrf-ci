@@ -12,10 +12,16 @@ jobs:
     steps:
       - name: Commands
         run: |
-          whoami
-          pwd
-          hostname
+          cd /workdir/project
           ls -al
-          ls -al ../
-          ls -al ../../
-          ls -al /workdir
+          ls -al /workdir/project/build
+      - uses: actions/checkout@v3
+      - name: Build
+        run: |
+          pwd
+          ls -al
+          west build central_and_peripheral_hr -p always -b nrf52840dk_nrf52840 --build-dir /workdir/project/build
+      - name: Deploy
+        run: |
+          ls -al /workdir/project/build
+
