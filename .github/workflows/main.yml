@@ -1,10 +1,16 @@
+name: Kenji's workflow
 on: [push]
 
 jobs:
-  my_build_job:
+  my_build_job:  
     runs-on: ubuntu-latest
     name: A job to build Nordic 52840 code
+    container:
+      image: ktotsuka:getting-started
+      credentials:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
     steps:
       - name: Build action step
-        id: build
-        uses: ktotsuka/nrf-ci@HEAD
+        run: |
+          uname -a
