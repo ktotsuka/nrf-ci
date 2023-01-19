@@ -1,8 +1,8 @@
-name: Kenji's workflow to run commands inside a docker container
+name: Nordic 52840 CI/CD workflow
 on: [push]
 
 jobs:
-  my_build_job:  
+  my_job:
     runs-on: ubuntu-latest
     container:
       image: nordicplayground/nrfconnect-sdk:main
@@ -10,17 +10,20 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
     steps:
-      - name: Commands
+      - name: Go to project directory
         run: |
           cd /workdir/project
-          ls -al
-      - uses: actions/checkout@v3
-      - name: Build
+      - name: Checkout source code          
+        uses: actions/checkout@v3
+      - name: Build code
         run: |
-          pwd
-          ls -al
           west build central_and_peripheral_hr -p always -b nrf52840dk_nrf52840 --build-dir /workdir/project/build
-      - name: Deploy
+      - name: Prepare artifact
         run: |
-          ls -al /workdir/project/build
-
+          mkdir /workdir/project/artifacts
+          cp /workdir/project/build/zephyr/zephyr.hex /workdir/project/artifacts/
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact-to-download
+          path: /workdir/project/artifacts/zephyr.hex
