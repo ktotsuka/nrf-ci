@@ -14,7 +14,6 @@ jobs:
         run: |
           cd /workdir/project
           ls -al
-          ls -al /workdir/project/build
       - uses: actions/checkout@v3
       - name: Build
         run: |
