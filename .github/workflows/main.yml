@@ -14,3 +14,6 @@ jobs:
       - name: Build action step
         run: |
           uname -a
+          whoami
+          pwd
+          cat /proc/1/cgroup
