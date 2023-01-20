@@ -23,7 +23,7 @@ jobs:
           mkdir /workdir/project/artifacts
           cp /workdir/project/build/zephyr/zephyr.hex /workdir/project/artifacts/
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: artifact-to-download
           path: /workdir/project/artifacts/zephyr.hex
